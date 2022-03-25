@@ -7,6 +7,7 @@ import Gallery from './components/Gallery'
 import Contact from './components/Contact'
 
 function App() {
+  const [contactSelected, setContactSelected] = useState(false);
   const [categories] = useState([
     {
       name: "commercial",
@@ -29,11 +30,18 @@ function App() {
         categories = {categories}
         setCurrentCategory = {setCurrentCategory}
         currentCategory = {currentCategory}  
+        contactSelected = {contactSelected}
+        setContactSelected={setContactSelected}
       ></Nav>
       <main>
-        <Contact></Contact>
-        <Gallery currentCategory = {currentCategory}></Gallery>
-        <About></About>
+       {!contactSelected ? (
+         <>
+            <Gallery currentCategory = {currentCategory} ></Gallery>
+            <About></About>
+         </>
+       ) : (
+         <Contact></Contact>
+       )}
       </main>
     </div>
   );
